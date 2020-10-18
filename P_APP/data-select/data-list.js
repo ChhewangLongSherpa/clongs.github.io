@@ -91,13 +91,18 @@ document.addEventListener("DOMContentLoaded", function () {
         display.innerHTML = str;
     };
 
-    document.getElementById('services').onsubmit = function(e) {
+    document.getElementById('form').onsubmit = function(e) {
         // reference to select list using this keyword and form elements collection
         // no callback function used this time
-        var opts = getSelectedOptions( this.elements['demoSel[]'] );
+        var opts = getSelectedOptions( this.elements['services[]'] );
+
+        for(i = 0; i < opts.length; i++)
+        {
+            document.write(opts[i].value + "<br />");
+        }
         
-        alert( 'The number of options selected is: ' + opts.length ); //  number of selected options
-        
+        //alert( 'The number of options selected is: ' + opts.length ); //  number of selected options
+
         return false; // don't return online form
     };
 
