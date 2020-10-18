@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="app.js"></script>
     <link rel="stylesheet" href="app.css">
+    <script src="app.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <form id="input-form">
-      <h1> Test Form </h1>
+    <form action="#" method="post" id="input-form" class="input-form">
+       <h1> Test Form </h1>
       <!--Date Auto-Generated-->
       <div class="form-box abs-required-box">
         <div class="full_name-box">
@@ -33,60 +34,34 @@
         <label for="address_street">Street Address</label>
         <input type="text" id="address_street" name="address_street">
 
-        <label for="address_city">City</label>
-        <input type="text" id="address_city" name="address_city" >
+        <div>
+          <label for="address_city">City</label>
+          <input type="text" id="address_city" name="address_city" >
 
-        <label for="address_state">State</label>
-        <input type="text" id="address_state" name="address_state">
+          <label for="address_state">State</label>
+          <input type="text" id="address_state" name="address_state">
 
-        <label for="address_zip">Zip</label>
-        <input type="number" id="address_zip" name="address_zip" >
+          <label for="address_zip">Zip</label>
+          <input type="number" id="address_zip" name="address_zip" >
+        </div>
       </div>
       <!--
       <label for="service_price">Price</label>
       <input type="number" id="service_price" name="service_price">
       -->
-      <div class="form-box services_rendered-box">
-        <!-- Datalist-->
-        <!--<input list="services" name="Services" id="Services"> -->
-        <label for="services">Services to be done:</label>
-        <input type="text" list="services" multiple="multiple" />
-        <datalist id="services">
-          <option value="Audio Test"">Audio Test</option>
-          <option value="Battery Repair"">Battery Repair</option>
-          <option value="Data Transfer"">Data Transfer</option>
-          <option value="Did not Charge"">Did not Charge</option>
-          <option value="GPU Stress Test"">GPU Stress Test</option>
-          <option value="HD Test"">HD Test</option>
-          <option value="Installation Fee"">Installation Fee</option>
-          <option value="Liquid Damage Repair"">Liquid Damage Repair</option>
-          <option value="Microphone Test"">Microphone Test</option>
-          <option value="New HD (Mechanical)"">New HD (Mechanical)</option>
-          <option value="New OS Install"">New OS Install</option>
-          <option value="New SSD Drive"">New SSD Drive</option>
-          <option value="No Power Adapter"">No Power Adapter</option>
-          <option value="Not Repairable"">Not Repairable</option>
-          <option value="OS Reinstall/Upgrade"">OS Reinstall/Upgrade</option>
-          <option value="Other"">Other</option>
-          <option value="Parts placed on order"">Parts placed on order</option>
-          <option value="Port Test"">Port Test</option>
-          <option value="Power Adapter"">Power Adapter</option>
-          <option value="Purchased as Part(s)"">Purchased as Part(s)</option>
-          <option value="Screen Replacement"">Screen Replacement</option>
-          <option value="Traded Computers"">Traded Computers</option>
-          <option value="Tune Up"">Tune Up</option>
-          <option value="Virus Cleanup"">Virus Cleanup</option>
-          <option value="Webcam Test"">Webcam Test</option>
-          <option value="Wifi Test"">Wifi Test</option>
-        </datalist>
 
-        <label for="service_notes">Notes</label>
-        <input type="textarea" id="service_note" name="service_note">
+      <!--
+        TODO: Area where the datalist goes
+      -->
+        <div>
+          <label for="service_notes">Notes</label>
+          <input type="textarea" id="service_note" name="service_note">
+        </div>
       </div>
 
       <div class="form-box payment-box">
         <label for="payment_method">Paid with</label>
-        <input type="number" id="payment_method" name="payment_method"> 
+        <input type="text" id="payment_method" name="payment_method"> 
 
         <label for="payment_deposit">Deposit</label>
         <input type="number" id="payment_deposit" name="payment_deposit">
