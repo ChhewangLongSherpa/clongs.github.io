@@ -34,6 +34,14 @@ document.addEventListener( "DOMContentLoaded", function() {
 });
 */
 
+const debug = true;
+
+  //Encapuslate clearing of localStorage and Reload
+  function reloadForm(){
+    window.localStorage.clear();
+    window.location.reload();
+  }
+
 document.addEventListener("DOMContentLoaded", function () {
   // Source: https://www.dyn-web.com/tutorials/forms/select/multi-selected.php, 10/17/2020
   // arguments: reference to select list, callback function (optional)
@@ -73,6 +81,22 @@ document.addEventListener("DOMContentLoaded", function () {
       //alert( opt.form )
   }
 
+  /*
+  Paraphrased from
+  https://stackoverflow.com/questions/16507222/create-json-object-dynamically-via-javascript-without-concate-strings,
+  accessed 10/19/2020
+  */
+
+
+  function serviceObjectBuilder( serviceArray ) {
+    var jsonData = {};
+    for( i=0; i < serviceArray.length; i++ ){
+      var itemName = 'Service_' + i;
+      jsonData[itemName] = serviceArray[i].value;
+    }
+    return jsonData;
+  }
+
   // Source: https://www.dyn-web.com/tutorials/forms/select/multi-selected.php, 10/17/2020
   // anonymous function onchange for select list with id demoSel
   document.getElementById('services').onchange = function(e) {
@@ -100,7 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const address_zip = document.getElementById("address_zip").value;
     if( address_street || address_city || address_state || address_zip )
     {
-      var address = address_state + '\n' + address_state + ', ' + address_city + ', ' + address_zip;
+      var address = address_street + '\n' + address_city + ', ' 
+      + address_state + ', ' + address_zip;
     }
     else
     {
@@ -143,8 +168,45 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     document.write( "Will be picked up by: " + picked_up_by + "<br/>");
 
+    //Building a object for passing data on in LocalStorage
+     var requiredData = {
+      cust_name : name,
+      cust_phone : phone,
+      cust_email : email
+     };
+
+    var additionalDataAddress = {
+      a_street : address_street,
+      a_city : address_city,
+      a_state : address_state,
+      a_zip : address_zip
+    };
+
+    var services = serviceObjectBuilder(service);
+  
+    var additionalDataAdditional = {
+      serv_notes : service_note,
+      p_method : payment_method,
+      p_deposit : payment_deposit,
+      p_balance : payment_balance,
+      p_final : payment_final,
+      pickUp : picked_up_by
+    };
+
+    console.log(requiredData);
+    console.log(additionalDataAddress);
+    console.log(services);
+    console.log(additionalDataAdditional);
+
+    var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
+
+    window.localStorage.setItem('cmms_info', JSON.stringify(myData));
+
     //Reset button to reload form
-    document.write( " \<input type=\"reset\" value=\"Reset\" onClick=\"window.location.reload()\"\>"
+    //document.write( " \<input type=\"reset\" value=\"Reset\" onClick=\"window.location.reload()\"\>" );
+
+    document.write( " \<input type=\"reset\" value=\"Reset\" onClick=\"reloadForm()\"\>" );
+    document.write( " \<input type=\"button\" value=\"Print Display\" onClick=\"window.location.href='display.html'\"\>"
     );
     return false; //don't return online form
   }
