@@ -6,9 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="app.css">
     <script src="app.js"></script>
-    <!--
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    -->
   </head>
   <body>
     <form action="#" method="post" id="input-form" class="input-form">
@@ -52,9 +49,6 @@
       <input type="number" id="service_price" name="service_price">
       -->
 
-      <!--
-        TODO: Area where the datalist goes
-      -->
       <div id="select-box">
         <select id="services" name="services[]" multiple>
           <option data-value="0" value="Audio Test">Audio Test</option>
@@ -92,6 +86,9 @@
         </div>
       </div>
 
+      <div class="form-box">
+      </div>
+
       <div class="form-box" id="payment-box">
         <label for="payment_method">Paid with</label>
         <input type="text" id="payment_method" name="payment_method"> 
@@ -113,16 +110,25 @@
     
     
      <input type="submit" value="Submit">
-     <!--<input type="submit" value="Submit" onclick="results();">
-    -->
-     <!-- <input type="submit" onclick="saveFile()" value="Submit" /> -->
     </form>
   </body>
 </html>
 
 <!--TODO
-Form submittal redirect
-Form data saved
-Form data displayed : Everything except Data select is displaying ( 10/13/2020)
-If incorrect, go back to this form and re-load last inputs
+10/19/2020: 
+  Display Page for all submitted data
+  Display Page with Editable Prices
+  Print ticket page and/or layout
+  Print receipt page and/or layout
+  Save data entered to a DB ( current plan is csv file)
+  Load data from File
+  Reload button on Submission page reload values previous entered in new form
+
+//TODO Done
+10/12/2020:
+  Form data displayed : Everything except Data select is displaying ( 10/13/2020)
+  If incorrect, go back to this form and re-load last inputs
+  Form submittal redirect //DONE 10/19/2020
+  Form data saved //DONE 10/19/2020
+
 -->

@@ -14,4 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Non-valid data");
     }
 
+    console.log(requiredInfo);
+    console.log(addressInfo);
+    console.log(serviceInfo);
+    console.log(paymentInfo);
 });

@@ -1,11 +1,4 @@
 /*
-document.addEventListener( "DOMContentLoaded", function() {
-    for ( const input of document.getElementById("phone_number"))
-    {
-        validateUSPhoneNumber();
-    }
-
-});
 function validateUSPhoneNumber( inputText )
 {
     const usPhone = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -16,33 +9,20 @@ function validateForm(){
     //Validate email, phone,
 }
 */
-   
-/*
-document.addEventListener( "DOMContentLoaded", function() {
-    var data= {};
-    $("#services option").each(function(i,el)
-    {
-    data[$(el).data("value")] = $(el).val();
-    });
-
-    console.log(data, $("#services option").val());
-    $('#submit').click(function()
-    {
-        var value = $('#selected').val();
-        alert($('#services[ value="'+value +'"]'.data('value')));
-    });
-});
-*/
 
 const debug = true;
 
-  //Encapuslate clearing of localStorage and Reload
-  function reloadForm(){
-    window.localStorage.clear();
-    window.location.reload();
-  }
+//Encapuslate clearing of localStorage and Reload
+function reloadForm(){
+  window.localStorage.clear();
+  window.location.reload();
+}
 
 document.addEventListener("DOMContentLoaded", function () {
+  if(localStorage){
+    window.localStorage.clear();
+  }
+
   // Source: https://www.dyn-web.com/tutorials/forms/select/multi-selected.php, 10/17/2020
   // arguments: reference to select list, callback function (optional)
   function getSelectedOptions(sel, fn) {
@@ -86,8 +66,6 @@ document.addEventListener("DOMContentLoaded", function () {
   https://stackoverflow.com/questions/16507222/create-json-object-dynamically-via-javascript-without-concate-strings,
   accessed 10/19/2020
   */
-
-
   function serviceObjectBuilder( serviceArray ) {
     var jsonData = {};
     for( i=0; i < serviceArray.length; i++ ){
@@ -168,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     document.write( "Will be picked up by: " + picked_up_by + "<br/>");
 
-    //Building a object for passing data on in LocalStorage
+    //Building a object for passing data on into LocalStorage
      var requiredData = {
       cust_name : name,
       cust_phone : phone,
@@ -192,12 +170,17 @@ document.addEventListener("DOMContentLoaded", function () {
       p_final : payment_final,
       pickUp : picked_up_by
     };
-
-    console.log(requiredData);
-    console.log(additionalDataAddress);
-    console.log(services);
-    console.log(additionalDataAdditional);
-
+    
+    if(debug === true){
+      console.log(requiredData);
+      console.log(additionalDataAddress);
+      console.log(services);
+      console.log(additionalDataAdditional);
+    }
+    /*
+    Source: https://stackoverflow.com/questions/36599781/how-to-pass-data-from-one-page-to-another-page-html, 10/19/2020
+    Paraphrased it for my situation
+    */
     var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
 
     window.localStorage.setItem('cmms_info', JSON.stringify(myData));
