@@ -8,109 +8,119 @@
     <script src="app.js"></script>
   </head>
   <body>
-    <form action="#" method="post" id="input-form" class="input-form">
-       <h1> Test Form </h1>
-      <!--Date Auto-Generated-->
-      <div class="form-box" id="abs-required-box">
-        <div class="full_name-box">
-          <label for="full_name">Full Name:</label>
-          <input type="text" id="full_name" name="full_name" required>
-        </div>
-
-        <div id="phone_number-box">
-          <label for="phone_number">Phone Number</label>
-          <input type="tel" id="phone_number" name="phone_number" onfocus="this.value=''" value="Format: 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-          <!-- <small>Format: 123-456-7890</small> -->
-        </div>
-
-        <div id="email-box"> 
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" pattern=".+@.+" required>
-        </div>
-      </div>
-
-      <div class="form-box" id="address-box">
-        <label for="address_street">Street Address</label>
-        <input type="text" id="address_street" name="address_street">
-
+    <div id="container">
+      <form action="#" method="post" id="input-form" class="input-form">
+        <h1> Test Form </h1>
+        <!--Date ID Auto-Generated-->
         <div>
-          <label for="address_city">City</label>
-          <input type="text" id="address_city" name="address_city" >
-
-          <label for="address_state">State</label>
-          <input type="text" id="address_state" name="address_state">
-
-          <label for="address_zip">Zip</label>
-          <input type="number" id="address_zip" name="address_zip" >
+          <label for="autogen_id" id="autogen_idlabel">Form Number:</label>
+          <input type="text" class="autogen" id="autogen_id" readonly>
+          <label for="autogen_date" id="autogen_datelabel">Date: </label>
+          <input type="date" class="autogen" id="autogen_date"  readonly>
         </div>
-      </div>
-      <!--
-      <label for="service_price">Price</label>
-      <input type="number" id="service_price" name="service_price">
-      -->
+        <!--Date ID Auto-Generated-->
 
-      <div id="select-box">
-        <select id="services" name="services[]" multiple>
-          <option data-value="0" value="Audio Test">Audio Test</option>
-          <option data-value="1" value="Battery Repair">Battery Repair</option>
-          <option data-value="2" value="Data Transfer">Data Transfer</option>
-          <option data-value="3" value="Did not Charge">Did not Charge</option>
-          <option data-value="4" value="GPU Stress Test">GPU Stress Test</option>
-          <option data-value="5" value="HD Test">HD Test</option>
-          <option data-value="6" value="Installation Fee">Installation Fee</option>
-          <option data-value="7" value="Liquid Damage Repair">Liquid Damage Repair</option>
-          <option data-value="8" value="Microphone Test">Microphone Test</option>
-          <option data-value="9" value="New HD (Mechanical)">New HD (Mechanical)</option>
-          <option data-value="10" value="New OS Install">New OS Install</option>
-          <option data-value="11" value="New SSD Drive">New SSD Drive</option>
-          <option data-value="12" value="No Power Adapter">No Power Adapter</option>
-          <option data-value="13" value="Not Repairable">Not Repairable</option>
-          <option data-value="14" value="OS Reinstall/Upgrade">OS Reinstall/Upgrade</option>
-          <option data-value="15" value="Other">Other</option>
-          <option data-value="16" value="Parts placed on order">Parts placed on order</option>
-          <option data-value="17" value="Port Test">Port Test</option>
-          <option data-value="18" value="Power Adapter">Power Adapter</option>
-          <option data-value="19" value="Purchased as Part(s)">Purchased as Part(s)</option>
-          <option data-value="20" value="Screen Replacement">Screen Replacement</option>
-          <option data-value="21" value="Traded Computers">Traded Computers</option>
-          <option data-value="22" value="Tune Up">Tune Up</option>
-          <option data-value="23" value="Virus Cleanup">Virus Cleanup</option>
-          <option data-value="24" value="Webcam Test">Webcam Test</option>
-          <option data-value="25" value="Wifi Test">Wifi Test</option>
-        </select>
+        <div class="form-box" id="abs-required-box">
+          <span class="full_name-box">
+            <label class="form-label" for="full_name">Full Name:</label>
+            <input type="text" id="full_name" name="full_name" required>
+          </span>
 
-        <textarea name="display" id="display" placeholder="display" cols="19" rows="4" readonly></textarea>
-        <div>
-          <label for="service_notes">Notes</label>
-          <input type="textarea" id="service_note" name="service_note">
+          <span id="phone_number-box">
+            <label class="form-label" for="phone_number">Phone Number</label>
+            <input type="tel" id="phone_number" name="phone_number" onfocus="this.value=''" value="Format: 999-999-9999" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+            <!-- <small>Format: 123-456-7890</small> -->
+          </span>
+
+          <span id="email-box"> 
+            <label class="form-label" for="email">Email</label>
+            <input type="text" id="email" name="email" pattern=".+@.+" required>
+          </span>
         </div>
-      </div>
 
-      <div class="form-box">
-      </div>
+        <div class="form-box" id="address-box">
+            <span>
+              <label class="form-label" for="address_street">Street Address</label>
+              <input type="text" id="address_street" name="address_street">
+            </span>
+            <span>
+              <label class="form-label" for="address_city">City</label>
+              <input type="text" id="address_city" name="address_city" >
+            </span>
+            <span>
+              <label class="form-label" for="address_state">State</label>
+              <input type="text" id="address_state" name="address_state">
+            </span>
+            <span>
+              <label class="form-label" for="address_zip">Zip</label>
+              <input type="number" id="address_zip" name="address_zip" >
+            </span>
+          </div>
+        </div>
+        <!--
+        <label for="service_price">Price</label>
+        <input type="number" id="service_price" name="service_price">
+        -->
 
-      <div class="form-box" id="payment-box">
-        <label for="payment_method">Paid with</label>
-        <input type="text" id="payment_method" name="payment_method"> 
+        <div class="form-box" id="select-box">
+          <select id="services" name="services[]" multiple>
+            <option data-value="0" value="Audio Test">Audio Test</option>
+            <option data-value="1" value="Battery Repair">Battery Repair</option>
+            <option data-value="2" value="Data Transfer">Data Transfer</option>
+            <option data-value="3" value="Did not Charge">Did not Charge</option>
+            <option data-value="4" value="GPU Stress Test">GPU Stress Test</option>
+            <option data-value="5" value="HD Test">HD Test</option>
+            <option data-value="6" value="Installation Fee">Installation Fee</option>
+            <option data-value="7" value="Liquid Damage Repair">Liquid Damage Repair</option>
+            <option data-value="8" value="Microphone Test">Microphone Test</option>
+            <option data-value="9" value="New HD (Mechanical)">New HD (Mechanical)</option>
+            <option data-value="10" value="New OS Install">New OS Install</option>
+            <option data-value="11" value="New SSD Drive">New SSD Drive</option>
+            <option data-value="12" value="No Power Adapter">No Power Adapter</option>
+            <option data-value="13" value="Not Repairable">Not Repairable</option>
+            <option data-value="14" value="OS Reinstall/Upgrade">OS Reinstall/Upgrade</option>
+            <option data-value="15" value="Other">Other</option>
+            <option data-value="16" value="Parts placed on order">Parts placed on order</option>
+            <option data-value="17" value="Port Test">Port Test</option>
+            <option data-value="18" value="Power Adapter">Power Adapter</option>
+            <option data-value="19" value="Purchased as Part(s)">Purchased as Part(s)</option>
+            <option data-value="20" value="Screen Replacement">Screen Replacement</option>
+            <option data-value="21" value="Traded Computers">Traded Computers</option>
+            <option data-value="22" value="Tune Up">Tune Up</option>
+            <option data-value="23" value="Virus Cleanup">Virus Cleanup</option>
+            <option data-value="24" value="Webcam Test">Webcam Test</option>
+            <option data-value="25" value="Wifi Test">Wifi Test</option>
+          </select>
 
-        <label for="payment_deposit">Deposit</label>
-        <input type="number" id="payment_deposit" name="payment_deposit">
+          <textarea name="display" id="display" placeholder="display" cols="19" rows="4" readonly></textarea>
+          <div>
+            <label for="service_notes">Notes</label>
+            <input type="textarea" id="service_note" name="service_note">
+          </div>
+        </div>
 
-        <label for="payment_balance">Balance Due</label>
-        <input type="number" id="payment_balance" name="payment_balance">
+        <div class="form-box" id="payment-box">
+          <label for="payment_method">Paid with</label>
+          <input type="text" id="payment_method" name="payment_method"> 
 
-        <label for="payment_final">Final Payment</label>
-        <input type="number" id="payment_final" name="payment_final">
-      </div>
+          <label for="payment_deposit">Deposit</label>
+          <input type="number" id="payment_deposit" name="payment_deposit">
 
-      <div class="form-box" id="signature-box">
-        <label for="picked_up_by">Picked up by</label>
-        <input type="text" id="picked_up_by" name="picked_up_by">
-      </div>
-    
-    
-     <input type="submit" value="Submit">
-    </form>
+          <label for="payment_balance">Balance Due</label>
+          <input type="number" id="payment_balance" name="payment_balance">
+
+          <label for="payment_final">Final Payment</label>
+          <input type="number" id="payment_final" name="payment_final">
+        </div>
+
+        <div class="form-box" id="signature-box">
+          <label for="picked_up_by">Picked up by</label>
+          <input type="text" id="picked_up_by" name="picked_up_by">
+        </div>
+      
+        <input type="submit" value="Submit">
+      </form>
+    </div>
   </body>
 </html>
 

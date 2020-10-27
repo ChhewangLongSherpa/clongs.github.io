@@ -106,6 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return false; // don't return online form
     };
 
+     /*https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today, 10/27/2020*/
+    document.getElementById("autogen_date").value = new Date().toLocaleDateString('en-CA');
 
 });
 

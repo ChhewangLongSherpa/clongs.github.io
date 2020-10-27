@@ -1,10 +1,91 @@
+:root{
+  /* root has a higher specificity than html*/
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  background-color: #f1f1f1;
+  --main-min-height: 50px;
+}
+
+/*Parent For the entire form box */
+#container{
+  top: 50%;
+  left: 50%;
+  border: 2px solid #000;
+  margin: 20px;
+}
+
+form{
+  border: 2px solid green;
+  margin-left: 10px;
+  margin-right:20px;
+}
+
+.form-box {
+  border: 2px solid #000;
+  margin: 20px;
+}
+/* Div parent class to the label and input fields*/
+/*
+#form-box{
+  width: 100%;
+  margin-bottom: 20px;
+  display: table;
+  float:left;
+  border: 2px solid #000;
+}
+*/
+
+/* Div class specified to the input fields*/
+/*.form-label*/
+.form-box label{
+  display: table-cell;
+  width: 23vw;
+  text-align: left;
+  border-radius: 25px;
+  border: 2px solid #000;
+  background-color: red;
+  /*
+  float: left;
+  min-width: var( --main-min-height);
+  margin-right: 20px;
+  padding: 10px;
+  border-radius: 25px;
+  //For Debugging purposes
+  border: 2px solid #000;
+  */
+}
+
+
+/* Div class specified to the input fields*/
+.form-box input {
+  display: table-cell;
+  width: 100%;
+  border: 2px solid #000;
+  /*
+  min-width: 0;
+  min-height: var( --main-min-height); 
+  border-radius: 25px;
+  border: 2px solid #000;
+  font-size: medium;
+  text-align: left;
+  */
+}
+
+
+.autogen{
+  border: none;
+  background: none;
+  pointer-events: none;
+  font-size: large;
+}
 /* Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+  display: none;
 }
+/* Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;

@@ -21,7 +21,10 @@ function reloadForm(){
 document.addEventListener("DOMContentLoaded", function () {
   if(localStorage){
     window.localStorage.clear();
-  }
+  } 
+  
+  /*https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today, 10/27/2020*/
+  document.getElementById("autogen_date").value = new Date().toLocaleDateString('en-CA');
 
   // Source: https://www.dyn-web.com/tutorials/forms/select/multi-selected.php, 10/17/2020
   // arguments: reference to select list, callback function (optional)
