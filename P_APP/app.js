@@ -17,6 +17,16 @@ function reloadForm(){
   window.localStorage.clear();
   window.location.reload();
 }
+/*Source: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript, 10/27/2020*/
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   if(localStorage){
@@ -25,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   /*https://stackoverflow.com/questions/6982692/how-to-set-input-type-dates-default-value-to-today, 10/27/2020*/
   document.getElementById("autogen_date").value = new Date().toLocaleDateString('en-CA');
+  document.getElementById("autogen_id").value = makeid(8);
 
   // Source: https://www.dyn-web.com/tutorials/forms/select/multi-selected.php, 10/17/2020
   // arguments: reference to select list, callback function (optional)
@@ -94,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   document.getElementById('input-form').onsubmit = function(e){
+    const id = document.getElementById("autogen_id").value;
+    const date= document.getElementById("autogen_date").value;
     //Personal Info Pull from Document
     const name = document.getElementById("full_name").value;
     const phone = document.getElementById("phone_number").value;
@@ -125,7 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const picked_up_by = document.getElementById("picked_up_by").value;
 
     document.write("<h3>Here is your data: </h3>");
-    //TODO: NEED TO INSERT DATA TO COOKIE TO MAINTAIN STATE
+    document.write("Form Number: " + id + "<br/>" + "Date: " + date + "<br/>");
     document.write("Name: " + name + "<br/>" + "Address: " + address + "<br/>" 
     + "Phone: " + phone + "<br/>" + "Email: " + email + "<br/>");
 
@@ -151,6 +164,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Building a object for passing data on into LocalStorage
      var requiredData = {
+      form_id: id,
+      form_date: date,
       cust_name : name,
       cust_phone : phone,
       cust_email : email
@@ -196,4 +211,5 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     return false; //don't return online form
   }
+
 });
