@@ -200,7 +200,6 @@ document.addEventListener("DOMContentLoaded", function () {
     Paraphrased it for my situation
     */
     var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
-
     window.localStorage.setItem('cmms_info', JSON.stringify(myData));
 
     //Reset button to reload form
