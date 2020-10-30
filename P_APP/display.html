@@ -9,49 +9,69 @@
 </head>
 <body>
    <h3>This is the Display Page</h3>
+   <div id="shopContactInfo">
+     <h2>Contact Info</h2>
+
+     
+   <!--
+     For template of receipt
+     Source: https://codepen.io/JewettCitySoftwareCorporation/pen/GLLBeG
+   -->  
+   </div>
    <div class="container">
-       <p id="form_id"> </p>
-       <p id="form_date"></p>
-       <p id="full_name"></p>
-       <p id="phone_num"></p>
-       <p id="email"></p>
-       <p id="address_street"></p>
-       <p id="address_city"></p>
-       <p id="address_state"></p>
-       <p id="address_zip"></p>
+     <div>
+       <span>Form ID: <span id="form_id"></span> </span>
+       <span>Date: <span id="form_date"></span> </span>
+     </div>
+      <p>Customer Name: <span id="cust_name"></span></p>
+      <p>Customer Phone: <span id="cust_phone"></span> </p>
+      <p>Customer Email: <span id="cust_email"></span></p>
+      <br>
+      <div id="address">
+        <span>
+          <label for="address">Address: </label>
+          <div>
+            <span id="a_street"></span>
+            <div>
+              <span id="a_city"></span>
+              <span id="a_state"></span>
+              <span id="a_zip"></span>
+            </div>
+          </div>
+        </span>
+      </div>
+      <br>
+       <!--
+       <p>Address City: <span id="a_city"></span></p>
+       <p>Address State: <span id="a_state"></span></p>
+       <p>Address Zip: <span id="a_zip"></span></p>
+       <p>Address Street: <span id="a_street"></span></p>
+       <p>Address City: <span id="a_city"></span></p>
+       <p>Address State: <span id="a_state"></span></p>
+       <p>Address Zip: <span id="a_zip"></span></p>
+-->
 
-       <!-- services-->
+       <p><span id="services"></span></p>
 
-       <p id="service_note"></p>
-       <p id="pay_method"></p>
-       <p id="pay_deposit"></p>
-       <p id="pay_balance"></p>
-       <p id="pay_final"></p>
-       <p id="pickedUpBy"></p>
+       <p>Service Notes: <span id="serv_notes"></span></p>
+       <span>
+       <p>Payment Method: <span id="p_method"></span></p>
+       </span>
+       <span>
+       <p>Payment Deposit: <span id="p_deposit"></span></p>
+       </span>
+       <span>
+       <p>Payment Balance: <span id="p_balance"></span></p>
+       </span>
+       <p>Final Payment: <span id="p_final"></span></p>
+       <p>Picked Up By: <span id="pickUp"></span></p>
+   </div>
+   <div id="return_policy">
+     <p>
+      ALL LAKE OSWEGO MAC REPAIRS COME WITH A 90 DAY WARRANTY COVERING ONLY THE PARTS THAT WERE REPLACED OR REPAIRED AFTER THE DATE OF PICKUP BY THE CUSTOMER. ANY PHYSICAL DAMAGE OR WATER CORRISON WILL NOT BE COVERED UNDER THE 90 DAY WARRANTY. LAKE OSWEGO MAC REPAIR IS ALSO NOT RESPONSIBLE FOR ANY DATA LOST DURING THE SERVICE, NOR WILL THERE BE REFUNDS, OR EXCHANGES AFTER THIS 90 DAY WARRANTY. THANK YOU FOR YOU BUSINESS.
+     </p>
 
    </div>
-  <!--
-   const id = document.getElementById("autogen_id").value;
-    const date= document.getElementById("autogen_date").value;
-    //Personal Info Pull from Document
-    const name = document.getElementById("full_name").value;
-    const phone = document.getElementById("phone_number").value;
-    const email = document.getElementById("email").value;
-    //Address Testing area from Document
-    const address_street = document.getElementById("address_street").value;
-    const address_city = document.getElementById("address_city").value;
-    const address_state = document.getElementById("address_state").value;
-    const address_zip = document.getElementById("address_zip").value;
-    //Services and Notes
-    var service= getSelectedOptions( this.elements['services[]'] );
-    const service_note = document.getElementById("service_note").value;
-
-    //Payment 
-    const payment_method = document.getElementById("payment_method").value;
-    const payment_deposit = document.getElementById("payment_deposit").value;
-    const payment_balance = document.getElementById("payment_balance").value;
-    const payment_final = document.getElementById("payment_final").value;
-    const picked_up_by = document.getElementById("picked_up_by").value;
-  -->`
+  
 </body>
 </html>

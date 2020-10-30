@@ -1,0 +1,63 @@
+root{
+    --main-bg-color: lightblue;
+}
+
+*{
+    font-size: large;
+    font-weight: bold;
+}
+html{
+    background-color: var(--main-bg-color);
+}
+
+.container{
+    top: 50%;
+    left: 50%;
+    border: 10px solid red;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+}
+#address {
+    display: block;
+}
+label{
+    display: inline;
+}
+/* Setting for print
+https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/
+*/
+/*
+source: https://stackoverflow.com/questions/16649943/css-to-set-a4-paper-size
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font: 12pt "Tahoma";
+  }
+  
+  * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+  
+  .page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .subpage {
+    padding: 1cm;
+    border: 5px red solid;
+    height: 256mm;
+    outline: 2cm #FFEAEA solid;
+  }
+  */
