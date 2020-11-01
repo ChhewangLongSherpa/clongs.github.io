@@ -10,7 +10,7 @@ html{
     background-color: var(--main-bg-color);
 }
 
-.container{
+div.container{
     top: 50%;
     left: 50%;
     border: 10px solid red;
@@ -23,8 +23,84 @@ p{
 #address {
     display: block;
 }
+
 label{
     display: inline;
+}
+
+ul, li{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    align-content: left;
+}
+/*
+.service_item{
+    list-style-type: none;
+    line-height: 1.5em;
+    border: 2px solid black;
+    float: left;
+    display: inline;
+    width: 50%;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+}
+*/
+
+table{
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+}
+
+tr{
+    display: table-row;
+}
+
+td {
+    display: table-cell;
+    padding: 2px;
+    vertical-align: top;
+    border-bottom: 1px solid darkgray;
+    background: #fff;
+}
+
+li{
+    list-style-type: none;
+}
+
+div.line_items table{
+    width: 100%;
+    line-height: 1.5em;
+    text-align: left;
+}
+
+div#content{
+    /*
+    top: 50%;
+    left: 50%;
+    */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,-50%);
+    max-width: 70vw;
+    overflow: hidden;
+    outline: auto;
+}
+
+@media print {
+    @page{
+        size:a4 portrait; 
+    }
 }
 /* Setting for print
 https://www.smashingmagazine.com/2015/01/designing-for-print-with-css/

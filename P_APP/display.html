@@ -8,11 +8,10 @@
     <script src="display.js"></script>
 </head>
 <body>
-   <h3>This is the Display Page</h3>
+  <div id="content">
+    <div></div>
    <div id="shopContactInfo">
      <h2>Contact Info</h2>
-
-     
    <!--
      For template of receipt
      Source: https://codepen.io/JewettCitySoftwareCorporation/pen/GLLBeG
@@ -20,19 +19,21 @@
    </div>
    <div class="container">
      <div>
-       <span>Form ID: <span id="form_id"></span> </span>
-       <span>Date: <span id="form_date"></span> </span>
+       <span>Date: <span id="form_date"></span></span>
+       <span style="float:right">Transaction ID: <span id="form_id"></span> </span>
      </div>
-      <p>Customer Name: <span id="cust_name"></span></p>
-      <p>Customer Phone: <span id="cust_phone"></span> </p>
-      <p>Customer Email: <span id="cust_email"></span></p>
-      <br>
-      <div id="address">
-        <span>
-          <label for="address">Address: </label>
-          <div>
-            <span id="a_street"></span>
-            <div>
+     <ul>
+     <li>Customer Name: <span id="cust_name"></span></li>
+     <li>Customer Phone: <span id="cust_phone"></span> </li>
+     <li>Customer Email: <span id="cust_email"></span></li>
+     </ul>
+     <!--
+     <div id="address">
+     <span>
+      <label id="address_label" for="address">Address: </label>
+     <div>
+      <span id="a_street"></span>
+     <div>
               <span id="a_city"></span>
               <span id="a_state"></span>
               <span id="a_zip"></span>
@@ -40,6 +41,7 @@
           </div>
         </span>
       </div>
+      -->
       <br>
        <!--
        <p>Address City: <span id="a_city"></span></p>
@@ -50,28 +52,48 @@
        <p>Address State: <span id="a_state"></span></p>
        <p>Address Zip: <span id="a_zip"></span></p>
 -->
+       <div id="line_items">
+        <table id="services_box" cellpadding="0" cellspacing="0">
+          <tbody id=services_container>
+          <tr class="heading">
+            <td>Service</td>
+            <td>Price</td>
+          </tr>
+         
+          </tbody>
+       </table>
+         <!-- 
+        <div id="services_container"> </div>
+        <div id="prices_container"></div>
+        <ul id="services_container"><span class="code-comment"></span></ul>
+        <ul id="prices_container"></ul>
+       -->
+       </div>
+       <br>
 
-       <p><span id="services"></span></p>
-
-       <p>Service Notes: <span id="serv_notes"></span></p>
+       <p style="border-bottom: 1px solid gray;">Service Notes: <span style="float: right" id="serv_notes"></span></p>
        <span>
        <p>Payment Method: <span id="p_method"></span></p>
        </span>
+      <!--
        <span>
        <p>Payment Deposit: <span id="p_deposit"></span></p>
        </span>
        <span>
        <p>Payment Balance: <span id="p_balance"></span></p>
        </span>
-       <p>Final Payment: <span id="p_final"></span></p>
+       --> 
+       <p style="border-bottom: 1px solid gray;">Final Payment: <span style="float: right" id="p_final"></span></p>
        <p>Picked Up By: <span id="pickUp"></span></p>
    </div>
+   <br>
    <div id="return_policy">
      <p>
       ALL LAKE OSWEGO MAC REPAIRS COME WITH A 90 DAY WARRANTY COVERING ONLY THE PARTS THAT WERE REPLACED OR REPAIRED AFTER THE DATE OF PICKUP BY THE CUSTOMER. ANY PHYSICAL DAMAGE OR WATER CORRISON WILL NOT BE COVERED UNDER THE 90 DAY WARRANTY. LAKE OSWEGO MAC REPAIR IS ALSO NOT RESPONSIBLE FOR ANY DATA LOST DURING THE SERVICE, NOR WILL THERE BE REFUNDS, OR EXCHANGES AFTER THIS 90 DAY WARRANTY. THANK YOU FOR YOU BUSINESS.
      </p>
 
    </div>
-  
+   </div>
+  </div>
 </body>
 </html>

@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Service_5: "Virus Cleanup",
       Service_6: "Webcam Test",
       Service_7: "Wifi Test",
+      Service_8: "Liquid Damage Repair",
     };
   
     var additionalDataAdditional = {
@@ -94,8 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
     */
     function objectLoop ( obj ){
       for( var key in obj ){
+        /*
         console.log("Key: " + key);
         console.log("Value: " + obj[key]);
+        */
         var rep = document.getElementById( key.toString() );
         if( rep ){
           rep.innerHTML = obj[key];
@@ -107,9 +110,26 @@ document.addEventListener("DOMContentLoaded", function () {
     objectLoop(addressInfo);
     objectLoop(paymentInfo);
 
+    Object.keys(serviceInfo).map(function(key, index){
+      var re = document.getElementById("services_container");
+      var pi = document.getElementById("prices_container");
+      if(re){
+        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>\n'+'<td>'+ 0 +'</td></tr>';
+        //re.innerHTML += '<li class="service_item">' + serviceInfo[key] + '</li>';
+        //pi.innerHTML += '<li class="service_price">0</li>\n';
+        console.log(re);
+      }
+    });
+
     /*
-    for( var k in serviceInfo ){
-      console.log("Key: " + )
+    for( var key in serviceInfo ){
+      console.log("Key: " + key);
+      console.log("Value: " + serviceInfo[key]);
+      var re = document.getElementById("services_container");
+      if(re){
+        re.innerHTML += '<li class="service_item">' + serviceInfo[key] + '</li>\n';
+        console.log(re);
+      }
     }
     */
 
