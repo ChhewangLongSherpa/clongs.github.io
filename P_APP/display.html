@@ -9,10 +9,11 @@
 </head>
 <body>
   <div id="content">
-   <header style="display:flex;justify-content: center;align-items: center;" id="shopContactInfo">
+   <header id="shopContactInfo">
       Lake Oswego Mac Repair<br>
       4 Monroe Parkway, Lake Oswego, OR 97035<br>
-      (503) 387-3586 * https://lakeoswegomacrepair.com/
+      (503) 387-3586<br>
+      www.lakeoswegomacrepair.com
    <!--
      For template of receipt
      Source: https://codepen.io/JewettCitySoftwareCorporation/pen/GLLBeG
@@ -24,10 +25,10 @@
        <span>Date: <span id="form_date"></span></span>
        <span class="float_right">Transaction ID: <span id="form_id"></span> </span>
      </div>
-     <ul>
-     <li>Customer Name: <span id="cust_name"></span></li>
-     <li>Customer Phone: <span id="cust_phone"></span> </li>
-     <li>Customer Email: <span id="cust_email"></span></li>
+     <ul id="cust_info">
+      <li>Customer Name: <span id="cust_name"></span></li>
+      <li>Customer Phone: <span id="cust_phone"></span> </li>
+      <li>Customer Email: <span id="cust_email"></span></li>
      </ul>
      <!--
      <div id="address">
@@ -76,6 +77,7 @@
        <span>
        <p class="p_line_item">Service Notes: <span class="float_right" id="serv_notes"></span></p>
        </span>
+    <br>
        <span>
        <p class="p_line_item">Payment Method: <span class="float_right" id="p_method"></span></p>
        </span>
@@ -87,19 +89,23 @@
        <p>Payment Balance: <span id="p_balance"></span></p>
        </span>
        --> 
+    <br>
        <span>
        <p class="p_line_item">Final Payment: <span class="float_right" id="p_final"></span></p>
        </span>
+    <br>
        <span>
        <p class="p_line_item">Picked Up By: <span class="float_right" id="pickUp"></span></p>
        </span>
+    <br>
    </div>
    <br>
    <div>
-    <p style="white-space:normal; " id="return_policy">
+    <p id="return_policy">
       ALL LAKE OSWEGO MAC REPAIRS COME WITH A 90 DAY WARRANTY COVERING ONLY THE PARTS THAT WERE REPLACED OR REPAIRED AFTER THE DATE OF PICKUP BY THE CUSTOMER. ANY PHYSICAL DAMAGE OR WATER CORRISON WILL NOT BE COVERED UNDER THE 90 DAY WARRANTY. LAKE OSWEGO MAC REPAIR IS ALSO NOT RESPONSIBLE FOR ANY DATA LOST DURING THE SERVICE, NOR WILL THERE BE REFUNDS, OR EXCHANGES AFTER THIS 90 DAY WARRANTY. 
     </p>
-    <footer style="font-size:larger; display:flex; justify-content: center;align-items: center;"> THANK YOU FOR YOU BUSINESS. </footer>
+    <br>
+    <footer id="thankyou"> THANK YOU FOR YOUR BUSINESS!</footer>
    </div>
    </div>
   </div>

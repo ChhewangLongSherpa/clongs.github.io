@@ -1,10 +1,11 @@
-root{
+:root{
     --main-bg-color: lightblue;
 }
 
 *{
     font-size: large;
     font-weight: bold;
+    font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 html{
     background-color: var(--main-bg-color);
@@ -13,18 +14,11 @@ html{
 div.container{
     top: 50%;
     left: 50%;
-    /*
-    border: 5x solid red;
-    */
 }
 
 p{
     padding: 0;
     margin: 0;
-}
-
-#address {
-    display: block;
 }
 
 label{
@@ -37,19 +31,6 @@ ul, li{
     overflow: hidden;
     align-content: left;
 }
-/*
-.service_item{
-    list-style-type: none;
-    line-height: 1.5em;
-    border: 2px solid black;
-    float: left;
-    display: inline;
-    width: 50%;
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
-}
-*/
 
 table{
     display: table;
@@ -72,9 +53,6 @@ td {
     padding: 3px;
     vertical-align: top;
     border-bottom: 1px solid darkgray;
-    /*
-    background: #fff;
-    */
 }
 
 li{
@@ -95,29 +73,67 @@ div.line_items table{
     border-bottom: 1px solid gray;
 }
 
-/*
-div#content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%,-50%);
-    max-width: 70vw;
-    overflow-x: hidden;
-    overflow-y: visible;
+header#shopContactInfo{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
-*/
 
+footer#thankyou{
+    font-size:larger;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+}
+span#serv_notes{
+    padding-bottom: 1vh;
+}
+
+@media only screen and (max-width: 300px){
+    header#shopContactInfo{
+        display: block;
+    }
+
+    span#cust_name, #cust_phone, #cust_email {
+        display: block;
+    }
+
+}
+
+@media only screen and (max-width: 400px){
+    footer#thankyou{
+        text-align: center;
+    }
+}
 @media only screen and (max-width: 500px){
+    *{
+        float:none;
+        width: auto;
+    }
 
+    .float_right{
+        float: none;
+        display: block
+    }
 }
 
+@media only screen and (min-width:1200px){
+    div#content {
+        display: inline-block;
+        transform: translate(20%,1%);
+        max-width: 70vw;
+        overflow: visible;
+    }
+}
 
 @media print {
     @page{
         size:a4 portrait; 
     }
     *{
+        font-weight: lighter;
         float:none;
     }
   

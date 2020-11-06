@@ -77,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
         var addressInfo = displayData[1];
         var serviceInfo = displayData[2];
         var paymentInfo = displayData[3];
-        //var paymentInfo = JSON.parse(displayData[3]);
     }
     else{
         alert("Non-valid data");
@@ -106,9 +105,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     Object.keys(serviceInfo).map(function(key, index){
       var re = document.getElementById("services_container");
-      var pi = document.getElementById("prices_container");
+      //var pi = document.getElementById("prices_container");
+      var price = 0;
       if(re){
-        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>\n'+'<td>'+ 0 +'</td></tr>';
+        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>\n'+'<td>'+ price +'</td></tr>';
         //re.innerHTML += '<li class="service_item">' + serviceInfo[key] + '</li>';
         //pi.innerHTML += '<li class="service_price">0</li>\n';
         //console.log(re);
@@ -116,6 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     /*
+    //Alternate version for the code above for ServiceInfo object
     for( var key in serviceInfo ){
       console.log("Key: " + key);
       console.log("Value: " + serviceInfo[key]);
@@ -126,81 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     */
-
-    
-
-    /*
-    for ( var key in requiredInfo ){
-        console.log("Key: " + key);
-        console.log("Value: " + requiredInfo[key]);
-        var required = document.getElementById( key.toString() );
-        if( required ){
-          required.innerHTML += requiredInfo[key];
-        }
-      }
-      */
-    
-    /*
-    var required = document.getElementById();
-    required.innerHTML = '';
-    required.innerHTML = requiredInfo.name;
-
-    var required = document.getElementById("form_date");
-    required.innerHTML = '';
-    required.innerHTML = requiredInfo.name;
-
-    var required = document.getElementById("full_name");
-    required.innerHTML = '';
-    required.innerHTML = requiredInfo.cust_name;
-
-    var required = document.getElementById("phone_num");
-    required.innerHTML = '';
-    required.innerHTML = requiredInfo.cust_phone;
-    */
-    /*
-    var requiredData = {
-      form_id: id,
-      form_date: date,
-      cust_name : name,
-      cust_phone : phone,
-      cust_email : email
-     };
-
-    var additionalDataAddress = {
-      a_street : address_street,
-      a_city : address_city,
-      a_state : address_state,
-      a_zip : address_zip
-    };
-
-    var services = serviceObjectBuilder(service);
-  
-    var additionalDataAdditional = {
-      serv_notes : service_note,
-      p_method : payment_method,
-      p_deposit : payment_deposit,
-      p_balance : payment_balance,
-      p_final : payment_final,
-      pickUp : picked_up_by
-    };
-    
-    if(debug === true){
-      console.log(requiredData);
-      console.log(additionalDataAddress);
-      console.log(services);
-      console.log(additionalDataAdditional);
-    }
-    */
-      
-      /*
-      <p id="form_id"> </p>
-       <p id="form_date"></p>
-       <p id="full_name"></p>
-       <p id="phone_num"></p>
-       */
-
-    
-
 
     console.log(requiredInfo);
     console.log(addressInfo);
