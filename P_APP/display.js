@@ -8,6 +8,7 @@ Read/write from csv
     */
 
 document.addEventListener("DOMContentLoaded", function () {
+
     var requiredData = {
       form_id: "IOJVWG12",
       form_date: "10/20/2020",
@@ -23,7 +24,24 @@ document.addEventListener("DOMContentLoaded", function () {
       a_zip : "38939"
     };
 
-
+    /*
+    var services = {
+      Service_0: "Power Adapter",
+      Service_1: "Purchased as Part",
+      Service_2: "Screen Replacement",
+      Service_3: "Traded Computers",
+      Service_4: "Tune Up",
+      Service_5: "Virus Cleanup",
+      Service_6: "Webcam Test",
+      Service_7: "Wifi Test",
+      Service_8: "Liquid Damage Repair",
+      Service_9: "Power Adapter",
+      Service_10: "Purchased as Part",
+      Service_11: "Screen Replacement",
+      Service_12: "Traded Computers"
+}
+*/
+     
     var services = {
       Service_0: "Power Adapter",
       Service_1: "Purchased as Part",
@@ -64,7 +82,6 @@ document.addEventListener("DOMContentLoaded", function () {
     var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
     window.localStorage.setItem('cmms_info', JSON.stringify(myData));
 
-
     if( localStorage ){
         var myData = localStorage['cmms_info'];
         displayData = JSON.parse(myData);
@@ -103,6 +120,44 @@ document.addEventListener("DOMContentLoaded", function () {
     objectLoop(addressInfo);
     objectLoop(paymentInfo);
 
+    /*
+    function addStyleSheetRules(rules){
+      var styleE1 = document.createElement('style'),
+      styleSheet;
+      document.head.appendChild(styleE1);
+
+      styleSheet = styleE1.sheet;
+      for (var i = 0, rl = rules.length; i < rl; i++) {
+        var j = 1, rule = rules[i], selector = rules[i][0], propStr = '';
+        // If the second argument of a rule is an array of arrays, correct our variables.
+      if (Object.prototype.toString.call(rule[1][0]) === '[object Array]') {
+        rule = rule[1];
+        j = 0;
+      }
+
+      for (var pl = rule.length; j < pl; j++) {
+        var prop = rule[j];
+        propStr += prop[0] + ':' + prop[1] + (prop[2] ? ' !important' : '') + ';\n';
+      }
+
+      // Insert CSS Rule
+      styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);
+
+    };
+    */
+    /*
+    //Trying to add a rule where if the services are greater than 20, that there is a page break inserted properly
+    var serviceCount = Object.keys(serviceInfo).length;
+    if( serviceCount >= 20 ){
+      console.log("Services: " + serviceCount);
+      addStyleSheetRules(['.page_break_id',['position','relative']],['.page_break_id',['page-break-before','always']]);
+      var sheet = document.styleSheets[0];
+      sheet.insertRule(".page_break_id","position:relative; page-break-before:always;",1);
+      const mediaRuleText = '@media print {.page_break_id { position:relative; page-break-before:always; }';
+      const mediaRuleIndex = CSSStyleSheet.insertRule(mediaRuleText);
+      const mediaRule = CSSStyleSheet.cssRules[mediaRuleIndex];
+      console.log(mediaRule.cssRules[0].selectorText);
+    }*/
     Object.keys(serviceInfo).map(function(key, index){
       var re = document.getElementById("services_container");
       //var pi = document.getElementById("prices_container");

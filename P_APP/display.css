@@ -48,6 +48,10 @@ tr{
     display: table-row;
 }
 
+tr:nth-child(even) {
+    background: #d4d4d4;
+}
+
 td {
     display: table-cell;
     padding: 3px;
@@ -132,16 +136,20 @@ span#serv_notes{
     @page{
         size:a4 portrait; 
     }
+
     *{
         font-weight: lighter;
         float:none;
     }
-  
+
     div#content{ 
         max-width: 100%;
         overflow: visible;
     }
 
+    tr:nth-child(even) {
+        background: none;
+    }
     p#return_policy{
         font-size: small;
     }
