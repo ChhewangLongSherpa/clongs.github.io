@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
       //var pi = document.getElementById("prices_container");
       var price = 0;
       if(re){
-        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>\n'+'<td>'+ price +'</td></tr>';
+        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>'+'<td>'+ price +'</td></tr>';
         //re.innerHTML += '<li class="service_item">' + serviceInfo[key] + '</li>';
         //pi.innerHTML += '<li class="service_price">0</li>\n';
         //console.log(re);
@@ -183,8 +183,83 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     */
 
+    saveData();
+
     console.log(requiredInfo);
     console.log(addressInfo);
     console.log(serviceInfo);
     console.log(paymentInfo);
 });
+
+
+/**
+ * Source: https://seegatesite.com/tutorial-read-and-write-csv-file-with-javascript/
+ * Exporting to CSV
+ */
+function saveData( ){
+  let CRM_arrayheader = [
+    "Customer_Name","Customer_Phone","Customer_Email",
+    "Street_Address","City","State","Zipcode"
+  ];
+  let transaction_arrayheader = [
+    "Transaction_Id","Transaction_Date","Customer_Name","Customer_Email","Service","Service_Notes","Payment","Deposit","Balance","Final","Pickup"
+  ];
+
+  let CRM_arraydata = [];
+  let customer_info = {
+    cust_name: displayData[0].cust_name,
+    cust_phone: displayData[0].cust_phone,
+    cust_email: displayData[0].cust_email,
+    cust_address: displayData[1].a_street,
+    cust_city: displayData[1].a_city,
+    cust_state: displayData[1].a_state,
+    cust_zip: displayData[1].a_zip
+  };
+  console.log(CRM_arraydata = [customer_info])
+  /*
+  let customer_info = displayData.map(function(info){
+    return{
+      cust_name: displayData[0].cust_name,
+      cust_phone: displayData[0].cust_phone,
+      cust_email: displayData[0].cust_email,
+    }
+  })
+
+  let customer_address = displayData.map(function(add){
+    return{
+      customer_address: displayData[1].a_street,
+      customer_city: displayData[1].a_city,
+      customer_state: displayData[1].a_state,
+      customer_zip: displayData[1].a_zip
+    }
+  })
+  let CRM_data ={
+    ...customer_info,
+    ...customer_address
+  }
+  */
+
+
+  function export_csv( arrayHeader, arrayData, delimiter, fileName){
+    let header = arrayHeader.join(delimiter)+'\n';
+    let csv = header;
+           arrayData.forEach( obj => {
+               let row = [];
+               for (key in obj) {
+                   if (obj.hasOwnProperty(key)) {
+                       row.push(obj[key]);
+                   }
+               }
+               csv += row.join(delimiter)+"\n";
+           });
+
+           let csvData = new Blob([csv], { type: 'text/csv' });  
+           let csvUrl = URL.createObjectURL(csvData);
+
+           let hiddenElement = document.createElement('a');
+           hiddenElement.href = csvUrl;
+           hiddenElement.target = '_blank';
+           hiddenElement.download = fileName + '.csv';
+           hiddenElement.click();
+  }
+}
