@@ -7,6 +7,7 @@ Read/write from csv
   read from csv...tbd
     */
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
     var requiredData = {
@@ -142,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Insert CSS Rule
       styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);
-
     };
     */
     /*
@@ -158,14 +158,11 @@ document.addEventListener("DOMContentLoaded", function () {
       const mediaRule = CSSStyleSheet.cssRules[mediaRuleIndex];
       console.log(mediaRule.cssRules[0].selectorText);
     }*/
-    Object.keys(serviceInfo).map(function(key, index){
+    Object.keys(serviceInfo).map(function(key){
       var re = document.getElementById("services_container");
-      //var pi = document.getElementById("prices_container");
       var price = 0;
       if(re){
-        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>'+'<td>'+ price +'</td></tr>';
-        //re.innerHTML += '<li class="service_item">' + serviceInfo[key] + '</li>';
-        //pi.innerHTML += '<li class="service_price">0</li>\n';
+        re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>'+'<td class="td-editable">'+ price +'</td></tr>';
         //console.log(re);
       }
     });
@@ -183,14 +180,78 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     */
 
+    tdEdit("services_box");
+
     saveData();
 
+    /*
     console.log(requiredInfo);
     console.log(addressInfo);
     console.log(serviceInfo);
     console.log(paymentInfo);
+    */
 });
 
+function tdEdit( table ){
+    /**
+     * Source: https://plnkr.co/edit/GJlVn2ir1dhNilFc?p=preview&preview, 11/7/2020
+     * Make Table cells editable
+     */
+    let sourceTable = document.getElementById(table);
+    if(!sourceTable) return;
+    let editingTd;
+
+    sourceTable.onclick = function(event){
+      let target = event.target.closest('.edit-cancel,.edit-ok,td');
+
+      if( !sourceTable.contains(target)) return;
+
+      if( target.className == 'edit-cancel'){
+        finishTdEdit(editingTd.elem, false);
+      } else if ( target.className == 'edit-ok'){
+        finishTdEdit(editingTd.elem, true);
+      } else if ( target.nodeName == 'TD'){
+        if( editingTd ) return;
+        makeTdEditable(target);
+      }
+    };
+
+    function makeTdEditable(td){
+      editingTd = {
+        elem: td,
+        data: td.innerHTML
+      };
+
+      td.classList.add('edit-td');
+      //td.setAttribute("style","display: inline-block; align-items: right;")
+
+      let textArea = document.createElement('textarea');
+      textArea.setAttribute("style","outline:none;");
+      textArea.style.height= 3.5 +'vh';
+      //textArea.style.width= td.clientWidth +'px';
+      textArea.className = 'edit-area';
+
+      textArea.value = td.innerHTML;
+      td.innerHTML = '';
+      td.appendChild(textArea);
+      textArea.focus(); //Bring mouse cursor inside field
+
+      td.insertAdjacentHTML("beforeEnd",
+      '<div style="display:inline-block; vertical-align: top" class="edit-controls"><button class="edit-ok">OK</button><button class="edit-cancel">CANCEL</button></div>'
+      );
+    }
+
+    function finishTdEdit(td, isOk) {
+      if( isOk ){
+        td.innerHTML = td.firstChild.value;
+      } else {
+        td.innerHTML = editingTd.data;
+      }
+
+      td.classList.remove('edit-td');
+      editingTd = null;
+    }
+}
 
 /**
  * Source: https://seegatesite.com/tutorial-read-and-write-csv-file-with-javascript/
@@ -201,9 +262,7 @@ function saveData( ){
     "Customer_Name","Customer_Phone","Customer_Email",
     "Street_Address","City","State","Zipcode"
   ];
-  let transaction_arrayheader = [
-    "Transaction_Id","Transaction_Date","Customer_Name","Customer_Email","Service","Service_Notes","Payment","Deposit","Balance","Final","Pickup"
-  ];
+
 
   let CRM_arraydata = [];
   let customer_info = {
@@ -215,30 +274,74 @@ function saveData( ){
     cust_state: displayData[1].a_state,
     cust_zip: displayData[1].a_zip
   };
-  console.log(CRM_arraydata = [customer_info])
-  /*
-  let customer_info = displayData.map(function(info){
-    return{
-      cust_name: displayData[0].cust_name,
-      cust_phone: displayData[0].cust_phone,
-      cust_email: displayData[0].cust_email,
-    }
-  })
+  CRM_arraydata = [customer_info];
+  //console.log(CRM_arraydata);
 
-  let customer_address = displayData.map(function(add){
-    return{
-      customer_address: displayData[1].a_street,
-      customer_city: displayData[1].a_city,
-      customer_state: displayData[1].a_state,
-      customer_zip: displayData[1].a_zip
+  let transaction_arrayheader = [
+    "Transaction_Id","Transaction_Date","Customer_Name","Customer_Phone","Customer_Email","Service_Count","Service_Notes","Payment","Deposit","Balance","Final","Pickup"
+  ];
+  let transaction_arrayData =[];
+
+  function cleanupStrForCsv( str ){
+    if( str == null || str == '' ){
+      return '';
     }
-  })
-  let CRM_data ={
-    ...customer_info,
-    ...customer_address
+    return str.replace(/[^. a-zA-Z0-9]/g,'');
   }
-  */
 
+  let transaction_info = {
+    trans_id: displayData[0].form_id,
+    trans_date: displayData[0].form_date,
+    trans_cust_name:displayData[0].cust_name,
+    trans_cust_phone: displayData[0].cust_phone,
+    trans_cust_email:displayData[0].cust_email,
+    trans_service_count: Object.keys(displayData[2]).length,
+    trans_service_notes: cleanupStrForCsv(displayData[3].serv_notes),
+    trans_pay_method: displayData[3].p_method,
+    trans_pay_deposit: displayData[3].p_deposit,
+    trans_pay_balance: displayData[3].p_balance,
+    trans_pay_final: displayData[3].p_final,
+    trans_pickup: displayData[3].pickUp
+  };
+  transaction_arrayData=[transaction_info];
+  //console.log(transaction_arrayData);
+
+  let servicesList_arrayheader =["Transaction_ID","Services"];
+  let s_info = {
+    trans_id: displayData[0].form_id/*,
+    trans_date: displayData[0].form_date,
+    trans_cust_name:displayData[0].cust_name,
+    trans_cust_phone: displayData[0].cust_phone,
+    trans_cust_email:displayData[0].cust_email,
+    */
+  };
+  //TODO This is is not appending correctly
+
+  function serviceObjectBuilder( serviceArray ) {
+    var jsonData = {};
+    for( i=0; i < serviceArray.length; i++ ){
+      var itemName = 'Service_' + i;
+      jsonData[itemName] = serviceArray[i].value;
+    }
+    return jsonData;
+  }
+  let tempObj = serviceObjectBuilder(displayData[2]);
+  /*
+  Object.keys(displayData[2]).map(function(key, index){
+    let str = "Services_"+index;
+    let temp = { `${index}` : displayData[2][key]};
+    tempObj={
+      ...temp
+    }
+  });
+  */
+  console.log(tempObj);
+
+  let servicesList_info = Object.assign(s_info, tempObj);
+  console.log(servicesList_info);
+  
+  let servicesList_arrayData = [servicesList_info]
+  //***NOT WORKING */
 
   function export_csv( arrayHeader, arrayData, delimiter, fileName){
     let header = arrayHeader.join(delimiter)+'\n';
@@ -253,6 +356,7 @@ function saveData( ){
                csv += row.join(delimiter)+"\n";
            });
 
+           //Need Blob for large amounts of data
            let csvData = new Blob([csv], { type: 'text/csv' });  
            let csvUrl = URL.createObjectURL(csvData);
 
@@ -262,4 +366,7 @@ function saveData( ){
            hiddenElement.download = fileName + '.csv';
            hiddenElement.click();
   }
+  //export_csv(transaction_arrayheader, transaction_arrayData, ",", "transactions");
+  //export_csv(CRM_arrayheader, CRM_arraydata, ",", "customers");
+  //export_csv(servicesList_arrayheader, servicesList_arrayData, ",", "services");
 }

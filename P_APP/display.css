@@ -7,6 +7,10 @@
     font-weight: bold;
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
+
+span:hover, td:hover{
+    background-color: yellow;
+}
 html{
     background-color: var(--main-bg-color);
 }
@@ -95,6 +99,14 @@ span#serv_notes{
     padding-bottom: 1vh;
 }
 
+.edit-area{
+    position: relative;
+}
+.heading{
+    background: black;
+    color: white; 
+    
+}
 @media only screen and (max-width: 300px){
     header#shopContactInfo{
         display: block;
@@ -152,6 +164,11 @@ span#serv_notes{
     }
     p#return_policy{
         font-size: small;
+    }
+
+    .heading{
+        background-color: none;
+        color: black;
     }
 
 }

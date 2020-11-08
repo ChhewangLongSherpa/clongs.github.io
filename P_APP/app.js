@@ -68,11 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // display in textarea for this example
       var display = document.getElementById('display');
       display.innerHTML += opt.value + ', ';
-
-      // can access properties of opt, such as...
-      //alert( opt.value )
-      //alert( opt.text )
-      //alert( opt.form )
   }
 
   /*
