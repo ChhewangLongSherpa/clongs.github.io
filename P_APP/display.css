@@ -8,11 +8,16 @@
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
-span:hover, td:hover{
+/*span:hover, */
+tr.service_item:hover{
     background-color: yellow;
 }
 html{
     background-color: var(--main-bg-color);
+}
+
+div.content{
+    position: relative;
 }
 
 div.container{
@@ -29,11 +34,15 @@ label{
     display: inline;
 }
 
-ul, li{
+ul.cust_info, li.cust_info{
     margin: 0;
     padding: 0;
     overflow: hidden;
     align-content: left;
+}
+
+li.cust_info{
+    list-style-type: none;
 }
 
 table{
@@ -61,10 +70,6 @@ td {
     padding: 3px;
     vertical-align: top;
     border-bottom: 1px solid darkgray;
-}
-
-li{
-    list-style-type: none;
 }
 
 div.line_items table{
@@ -102,11 +107,110 @@ span#serv_notes{
 .edit-area{
     position: relative;
 }
-.heading{
+
+tr.heading{
     background: black;
     color: white; 
-    
 }
+
+/*
+#saveButton{
+    display: none;
+    width: 15vh;
+    height: 6vh;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: aqua;
+    cursor: pointer;
+    border-radius: 10px; //Rounded Corners
+    font-size: 18px;
+}
+
+#saveButton:hover{
+    background-color: #555;
+    color: white;
+}
+*/
+
+#button-container{
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 6vh;
+    background: lightgray;
+}
+
+.menuBtn{
+    display: inline-block;
+    width: 15vh;
+    height: 6vh;
+    border: none;
+    outline: none;
+    background-color: aqua;
+    cursor: pointer;
+    border-radius: 10px; 
+    font-size: 18px;
+}
+
+.menuBtn:hover{
+    background-color: #555;
+    color: white;
+}
+/*
+.ham:before{
+    font-family: 'FontAwesome';
+    content:"\f0c9"
+}
+
+.ham {
+    position: absolute;
+    // always keep ham on top of everything 
+    z-index: 1000;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    background-size: 100%;
+}
+
+.showClose{
+    background-color: red;
+}
+.showClose:before{
+    background-color: gray;
+    font-family: 'FontAwesome';
+    content:"\f2d3"
+}
+.showNav {
+  // show the menu
+  transform: translateY(0);
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+    // hide the menu above the screen by default
+    transform: translateY(-100%);
+    // transition adds a little animation when sliding in and out the menu//
+    transition: transform 0.2s ease;
+ }
+*/
+
 @media only screen and (max-width: 300px){
     header#shopContactInfo{
         display: block;
@@ -147,6 +251,7 @@ span#serv_notes{
 @media print {
     @page{
         size:a4 portrait; 
+        margin: auto;
     }
 
     *{
@@ -162,13 +267,17 @@ span#serv_notes{
     tr:nth-child(even) {
         background: none;
     }
+
     p#return_policy{
         font-size: small;
     }
 
-    .heading{
+    tr.heading{
         background-color: none;
         color: black;
     }
 
+    .no-print, .no-print *{
+        display: none !important;
+    }
 }

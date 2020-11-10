@@ -1,12 +1,4 @@
-/*
-Read/write from csv
-  write to csv: 2 files, one for customers, one for the
-  transactions - one record per service, so a single 
-  transaction can have many services
-  i.e. trans1, cust_email, serv#
-  read from csv...tbd
-    */
-
+var debug = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -100,11 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
         alert("Non-valid data");
     }
 
+    function objectLoop ( obj ){
     /*
     Modified from link below to loop through object with key
     Source: https://stackoverflow.com/questions/684672/how-do-i-loop-through-or-enumerate-a-javascript-object, 10/29/2020
     */
-    function objectLoop ( obj ){
       for( var key in obj ){
         /*
         console.log("Key: " + key);
@@ -121,46 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
     objectLoop(addressInfo);
     objectLoop(paymentInfo);
 
-    /*
-    function addStyleSheetRules(rules){
-      var styleE1 = document.createElement('style'),
-      styleSheet;
-      document.head.appendChild(styleE1);
-
-      styleSheet = styleE1.sheet;
-      for (var i = 0, rl = rules.length; i < rl; i++) {
-        var j = 1, rule = rules[i], selector = rules[i][0], propStr = '';
-        // If the second argument of a rule is an array of arrays, correct our variables.
-      if (Object.prototype.toString.call(rule[1][0]) === '[object Array]') {
-        rule = rule[1];
-        j = 0;
-      }
-
-      for (var pl = rule.length; j < pl; j++) {
-        var prop = rule[j];
-        propStr += prop[0] + ':' + prop[1] + (prop[2] ? ' !important' : '') + ';\n';
-      }
-
-      // Insert CSS Rule
-      styleSheet.insertRule(selector + '{' + propStr + '}', styleSheet.cssRules.length);
-    };
-    */
-    /*
-    //Trying to add a rule where if the services are greater than 20, that there is a page break inserted properly
-    var serviceCount = Object.keys(serviceInfo).length;
-    if( serviceCount >= 20 ){
-      console.log("Services: " + serviceCount);
-      addStyleSheetRules(['.page_break_id',['position','relative']],['.page_break_id',['page-break-before','always']]);
-      var sheet = document.styleSheets[0];
-      sheet.insertRule(".page_break_id","position:relative; page-break-before:always;",1);
-      const mediaRuleText = '@media print {.page_break_id { position:relative; page-break-before:always; }';
-      const mediaRuleIndex = CSSStyleSheet.insertRule(mediaRuleText);
-      const mediaRule = CSSStyleSheet.cssRules[mediaRuleIndex];
-      console.log(mediaRule.cssRules[0].selectorText);
-    }*/
     Object.keys(serviceInfo).map(function(key){
       var re = document.getElementById("services_container");
       var price = 0;
+      if( debug ){
+        const precision = 100;
+        //Source: https://stackoverflow.com/questions/45735472/generate-a-random-number-between-2-values-to-2-decimals-places-in-javascript/45736188, 11/09/2020
+        var price = Math.floor(Math.random()*(10*precision-1*precision)+1*precision);
+      }
       if(re){
         re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>'+'<td class="td-editable">'+ price +'</td></tr>';
         //console.log(re);
@@ -180,17 +140,91 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     */
 
+    /*
+    var navbar = document.querySelector(".navbar");
+    var ham = document.querySelector(".ham");
+
+    function toggleHamburger(){
+      navbar.classList.toggle("showNav");
+      ham.classList.toggle("showClose");
+    }
+
+    ham.addEventListener("click",toggleHamburger);
+
+    function checkToggle(e){
+      var itemClicked = e.target;
+      if( itemClicked.classList.contains("menuLink")){
+        toggleHamburger();
+      }
+    }
+
+    navbar.addEventListener("click", checkToggle);
+    */
+
+    hiddenMenuBar = document.getElementById("button-container");
+
+    window.onscroll = function(){
+      if( document.body.scrollTop > 5 || document.documentElement.scrollTop > 5 ){
+        hiddenMenuBar.style.display = "block";
+      }
+      else{
+        hiddenMenuBar.style.display = "none";
+      }
+    }
+
+    //prettySaveButton("saveButton");
+    updateBalance("services_box","td-editable","p_final");
     tdEdit("services_box");
 
-    saveData();
-
-    /*
-    console.log(requiredInfo);
-    console.log(addressInfo);
-    console.log(serviceInfo);
-    console.log(paymentInfo);
-    */
+    if( debug ){
+      console.log(requiredInfo);
+      console.log(addressInfo);
+      console.log(serviceInfo);
+      console.log(paymentInfo);
+    };
 });
+
+function prettySaveButton( buttonId ){
+  saveButton = document.getElementById(buttonId);
+  window.onscroll = function() { scrollFunction()};
+
+  function scrollFunction(){
+    if( document.body.scrollTop > 5 || document.documentElement.scrollTop > 5 ){
+      saveButton.style.display = "block";
+    } else {
+      saveButton.style.display = "none";
+    }
+  }
+}
+
+function resetForm(){
+  localStorage.clear();
+  window.location.href='app.html';
+}
+
+function printReceipt(){
+  window.print();
+}
+
+function updateBalance( table, cell, balanceField ){
+  /**
+  * Source: https://stackoverflow.com/questions/4885844/javascript-to-add-values-of-a-table/4886029, 11/9/2020
+  */
+  var tbl = document.getElementById(table);
+  var cells = tbl.getElementsByTagName('td');
+  var total = 0;
+
+  for( var i =0, limit= cells.length; i < limit; i++ ){
+    var td = cells[i];
+    if( td.className === cell ){
+      total += parseInt(td.innerHTML);
+    }
+  }
+  
+  var balance = document.getElementById(balanceField);
+  balance.innerHTML = total;
+  if( debug ) { console.log("Total: " + total); }
+}
 
 function tdEdit( table ){
     /**
@@ -223,7 +257,6 @@ function tdEdit( table ){
       };
 
       td.classList.add('edit-td');
-      //td.setAttribute("style","display: inline-block; align-items: right;")
 
       let textArea = document.createElement('textarea');
       textArea.setAttribute("style","outline:none;");
@@ -250,20 +283,23 @@ function tdEdit( table ){
 
       td.classList.remove('edit-td');
       editingTd = null;
+      updateBalance("services_box","td-editable","p_final");
     }
 }
 
-/**
- * Source: https://seegatesite.com/tutorial-read-and-write-csv-file-with-javascript/
- * Exporting to CSV
- */
 function saveData( ){
+  /**
+  * Source: https://seegatesite.com/tutorial-read-and-write-csv-file-with-javascript/
+  * Exporting to CSV
+  */
+
+  /**
+   * Customer Data Compilation
+   */
   let CRM_arrayheader = [
     "Customer_Name","Customer_Phone","Customer_Email",
     "Street_Address","City","State","Zipcode"
   ];
-
-
   let CRM_arraydata = [];
   let customer_info = {
     cust_name: displayData[0].cust_name,
@@ -277,11 +313,16 @@ function saveData( ){
   CRM_arraydata = [customer_info];
   //console.log(CRM_arraydata);
 
+  /**
+   * Transaction Data Compilation
+   * Compied service into a count
+   */
   let transaction_arrayheader = [
     "Transaction_Id","Transaction_Date","Customer_Name","Customer_Phone","Customer_Email","Service_Count","Service_Notes","Payment","Deposit","Balance","Final","Pickup"
   ];
   let transaction_arrayData =[];
 
+  // Function cleans up most things except for . and a single space and proper alphanumeric entries
   function cleanupStrForCsv( str ){
     if( str == null || str == '' ){
       return '';
@@ -304,44 +345,29 @@ function saveData( ){
     trans_pickup: displayData[3].pickUp
   };
   transaction_arrayData=[transaction_info];
-  //console.log(transaction_arrayData);
+  if( debug ){ console.log(transaction_arrayData)};
 
-  let servicesList_arrayheader =["Transaction_ID","Services"];
-  let s_info = {
-    trans_id: displayData[0].form_id/*,
-    trans_date: displayData[0].form_date,
-    trans_cust_name:displayData[0].cust_name,
-    trans_cust_phone: displayData[0].cust_phone,
-    trans_cust_email:displayData[0].cust_email,
-    */
-  };
-  //TODO This is is not appending correctly
-
-  function serviceObjectBuilder( serviceArray ) {
-    var jsonData = {};
-    for( i=0; i < serviceArray.length; i++ ){
-      var itemName = 'Service_' + i;
-      jsonData[itemName] = serviceArray[i].value;
-    }
-    return jsonData;
-  }
-  let tempObj = serviceObjectBuilder(displayData[2]);
-  /*
-  Object.keys(displayData[2]).map(function(key, index){
-    let str = "Services_"+index;
-    let temp = { `${index}` : displayData[2][key]};
-    tempObj={
-      ...temp
-    }
+  /**
+   * Service List Compilation
+   */
+  let servicesList_arrayheader =["Transaction_ID","Service_Date", "Customer_Name", "Customer_Phone","Customer_Email","Service", "Number"];
+  let servicesList_container = [];
+  let s_info = {};
+  Object.keys(displayData[2]).map(function(key,i){
+    s_info = {
+      trans_id: displayData[0].form_id,
+      trans_date: displayData[0].form_date,
+      trans_cust_name:displayData[0].cust_name,
+      trans_cust_phone: displayData[0].cust_phone,
+      trans_cust_email:displayData[0].cust_email,
+      trans_service: displayData[2][key],
+      trans_serviceCount: (i+1)
+    };
+    if( debug ) { console.log(s_info)};
+    servicesList_container.push(s_info);
   });
-  */
-  console.log(tempObj);
 
-  let servicesList_info = Object.assign(s_info, tempObj);
-  console.log(servicesList_info);
-  
-  let servicesList_arrayData = [servicesList_info]
-  //***NOT WORKING */
+  console.log(servicesList_container);
 
   function export_csv( arrayHeader, arrayData, delimiter, fileName){
     let header = arrayHeader.join(delimiter)+'\n';
@@ -360,13 +386,19 @@ function saveData( ){
            let csvData = new Blob([csv], { type: 'text/csv' });  
            let csvUrl = URL.createObjectURL(csvData);
 
+           //SaveAs Functionality
            let hiddenElement = document.createElement('a');
            hiddenElement.href = csvUrl;
            hiddenElement.target = '_blank';
            hiddenElement.download = fileName + '.csv';
            hiddenElement.click();
   }
-  //export_csv(transaction_arrayheader, transaction_arrayData, ",", "transactions");
-  //export_csv(CRM_arrayheader, CRM_arraydata, ",", "customers");
-  //export_csv(servicesList_arrayheader, servicesList_arrayData, ",", "services");
+
+  var transFileName =`transaction_${displayData[0].form_date}_${displayData[0].form_id}`;
+  var customersFileName =`customer_${displayData[0].form_date}_${displayData[0].form_id}`;
+  var serviceFileName =`services_${displayData[0].form_date}_${displayData[0].form_id}`; 
+
+  export_csv(transaction_arrayheader, transaction_arrayData, ",", transFileName);
+  export_csv(CRM_arrayheader, CRM_arraydata, ",", customersFileName);
+  export_csv(servicesList_arrayheader, servicesList_container, ",", serviceFileName);
 }
