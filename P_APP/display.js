@@ -1,7 +1,8 @@
-var debug = false;
+const debug = false;
 
 document.addEventListener("DOMContentLoaded", function () {
 
+  if( debug ){
     var requiredData = {
       form_id: "IOJVWG12",
       form_date: "10/20/2020",
@@ -32,8 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Service_10: "Purchased as Part",
       Service_11: "Screen Replacement",
       Service_12: "Traded Computers"
-}
-*/
+    } */
      
     var services = {
       Service_0: "Power Adapter",
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
     window.localStorage.setItem('cmms_info', JSON.stringify(myData));
-
+  }
     if( localStorage ){
         var myData = localStorage['cmms_info'];
         displayData = JSON.parse(myData);
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
     //localStorage.removeItem('objectToPass');
 
     if( displayData && displayData.length < 5 ){
-        console.log(displayData.length);
+        if( debug) {console.log(displayData.length);}
         var requiredInfo = displayData[0];
         var addressInfo = displayData[1];
         var serviceInfo = displayData[2];
@@ -98,10 +98,10 @@ document.addEventListener("DOMContentLoaded", function () {
     Source: https://stackoverflow.com/questions/684672/how-do-i-loop-through-or-enumerate-a-javascript-object, 10/29/2020
     */
       for( var key in obj ){
-        /*
+        if(debug){
         console.log("Key: " + key);
         console.log("Value: " + obj[key]);
-        */
+        }
         var rep = document.getElementById( key.toString() );
         if( rep ){
           rep.innerHTML = obj[key];
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       if(re){
         re.innerHTML += '<tr class="service_item"><td>'+serviceInfo[key]+'</td>'+'<td class="td-editable">'+ price +'</td></tr>';
-        //console.log(re);
+        if( debug ){ console.log(re); }
       }
     });
 
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     hiddenMenuBar = document.getElementById("button-container");
 
     window.onscroll = function(){
-      if( document.body.scrollTop > 5 || document.documentElement.scrollTop > 5 ){
+      if( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
         hiddenMenuBar.style.display = "block";
       }
       else{
