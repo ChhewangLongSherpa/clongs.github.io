@@ -255,7 +255,7 @@ tr.heading{
     header, div.container, p#return_policy{
         transform: translate(20%,1%);
         display: inline-block;
-        max-width: 70vw;
+        width: 70vw;
         overflow: hidden;
     }
 }

@@ -1,8 +1,44 @@
-const debug = false;
+const testCase1 = false;
+const testCase2 = true;
+var debug = false;
+if( (testCase1 || testCase2) && !(testCase1 === testCase2) ){ debug = true;}
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  if( debug ){
+  if( debug && testCase2){
+    var requiredData = {
+      form_id: "IOJVWG12",
+      form_date: "10/20/2020",
+      cust_name : "John Smith",
+      cust_phone : "403-202-3030",
+      cust_email : "jsmith@smithers.com"
+    };
+
+    var additionalDataAddress = {
+      a_street : "",
+      a_city : "",
+      a_state : "",
+      a_zip : ""
+    };
+
+    var services = {
+      Service_0: "Power Adapter"
+    };
+
+    var additionalDataAdditional = {
+      serv_notes : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      p_method : "Cash",
+      p_deposit : "30202",
+      p_balance : "39399",
+      p_final : "202302",
+      pickUp : "Owner" 
+    };
+
+    var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
+    window.localStorage.setItem('cmms_info', JSON.stringify(myData));
+  }
+
+  if( debug && testCase1){
     var requiredData = {
       form_id: "IOJVWG12",
       form_date: "10/20/2020",
@@ -75,9 +111,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var myData = [requiredData, additionalDataAddress, services, additionalDataAdditional];
     window.localStorage.setItem('cmms_info', JSON.stringify(myData));
   }
+
     if( localStorage ){
         var myData = localStorage['cmms_info'];
-        displayData = JSON.parse(myData);
+        if( myData ){
+          displayData = JSON.parse(myData);
+        }
+        else{
+          alert("Data did not load! Please contact your developer!")
+        }
     }
     //localStorage.removeItem('objectToPass');
 
@@ -161,18 +203,23 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.addEventListener("click", checkToggle);
     */
 
+    /*
     hiddenMenuBar = document.getElementById("button-container");
 
     window.onscroll = function(){
       if( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
         hiddenMenuBar.style.display = "block";
-      }
+    } else if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+       //https://stackoverflow.com/questions/9439725/javascript-how-to-detect-if-browser-window-is-scrolled-to-bottom/31264162
+      saveButton.style.display = "block";
+    }
       else{
         hiddenMenuBar.style.display = "none";
       }
     }
+    */
 
-    //prettySaveButton("saveButton");
+    menuButtons("button-container");
     updateBalance("services_box","td-editable","p_final");
     tdEdit("services_box");
 
@@ -184,14 +231,24 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 });
 
-function prettySaveButton( buttonId ){
+function menuButtons( buttonId ){
   saveButton = document.getElementById(buttonId);
   window.onscroll = function() { scrollFunction()};
 
   function scrollFunction(){
-    if( document.body.scrollTop > 5 || document.documentElement.scrollTop > 5 ){
+    if( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
       saveButton.style.display = "block";
-    } else {
+    } 
+    else if(document.body.scrollHeight >= document.body.clientHeight ){
+      saveButton.style.display = "block";
+    }
+    /*
+    else if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
+      //https://stackoverflow.com/questions/9439725/javascript-how-to-detect-if-browser-window-is-scrolled-to-bottom/31264162
+      saveButton.style.display = "block";
+    }
+    */
+    else {
       saveButton.style.display = "none";
     }
   }
