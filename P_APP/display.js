@@ -1,5 +1,5 @@
 const testCase1 = false;
-const testCase2 = true;
+const testCase2 = false;
 var debug = false;
 if( (testCase1 || testCase2) && !(testCase1 === testCase2) ){ debug = true;}
 
@@ -54,23 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
       a_zip : "38939"
     };
 
-    /*
-    var services = {
-      Service_0: "Power Adapter",
-      Service_1: "Purchased as Part",
-      Service_2: "Screen Replacement",
-      Service_3: "Traded Computers",
-      Service_4: "Tune Up",
-      Service_5: "Virus Cleanup",
-      Service_6: "Webcam Test",
-      Service_7: "Wifi Test",
-      Service_8: "Liquid Damage Repair",
-      Service_9: "Power Adapter",
-      Service_10: "Purchased as Part",
-      Service_11: "Screen Replacement",
-      Service_12: "Traded Computers"
-    } */
-     
     var services = {
       Service_0: "Power Adapter",
       Service_1: "Purchased as Part",
@@ -203,23 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navbar.addEventListener("click", checkToggle);
     */
 
-    /*
-    hiddenMenuBar = document.getElementById("button-container");
-
-    window.onscroll = function(){
-      if( document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 ){
-        hiddenMenuBar.style.display = "block";
-    } else if((window.innerHeight + window.scrollY) >= document.body.offsetHeight){
-       //https://stackoverflow.com/questions/9439725/javascript-how-to-detect-if-browser-window-is-scrolled-to-bottom/31264162
-      saveButton.style.display = "block";
-    }
-      else{
-        hiddenMenuBar.style.display = "none";
-      }
-    }
-    */
-
-    menuButtons("button-container");
+       //menuButtons("button-container");
     updateBalance("services_box","td-editable","p_final");
     tdEdit("services_box");
 
@@ -232,6 +199,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function menuButtons( buttonId ){
+  /**
+   * Source: WS3 School, paraphrased buttom floating on top to display button
+   * if near bottom of page
+   */
   saveButton = document.getElementById(buttonId);
   window.onscroll = function() { scrollFunction()};
 

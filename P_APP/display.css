@@ -9,7 +9,6 @@
     font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
 }
 
-/*span:hover, */
 tr.service_item:hover{
     background-color: yellow;
 }
@@ -19,6 +18,7 @@ html{
 
 div.content{
     position: relative;
+    padding: 0.25rem;
 }
 
 div.container{
@@ -31,7 +31,10 @@ p{
     padding: 0;
     margin: 0;
 }
-
+div#cust_info-container {
+    border-bottom: 1px solid black;
+    padding-bottom: 0.25rem;
+}
 label{
     display: inline;
 }
@@ -138,6 +141,7 @@ tr.heading{
 }
 */
 
+/*
 #button-container{
     display: none;
     position: fixed;
@@ -147,6 +151,12 @@ tr.heading{
     height: var(--header-height);
     background: lightgray;
     border-bottom: 1vh solid black;
+}
+*/
+
+#button-container {
+    border-bottom: 1vh solid black;
+    padding: 0.25rem;
 }
 
 .menuBtn{
@@ -243,21 +253,21 @@ tr.heading{
 }
 
 @media only screen and (min-width:1200px){
-    /*
     div#content { 
         transform: translate(20%,1%);
         display: inline-block;
         max-width: 70vw;
         overflow: hidden;
     }
-    */
     /*z-index stacking context messed up by transform. zindex dynamic context messed up*/
+    /*
     header, div.container, p#return_policy{
         transform: translate(20%,1%);
         display: inline-block;
         width: 70vw;
         overflow: hidden;
     }
+    */
 }
 
 @media print {

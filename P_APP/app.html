@@ -86,10 +86,6 @@
           </div>
 
         </div>
-        <!--
-        <label for="service_price">Price</label>
-        <input type="number" id="service_price" name="service_price">
-        -->
 
         <div class="form-box" id="select-box">
           <span>
@@ -143,7 +139,12 @@
           <span>
             <i class="fas fa-money-check-alt icon"></i>
             <label for="payment_method">Paid with</label>
-            <input type="text" id="payment_method" name="payment_method"> 
+            <input list="payment_methods" id="payment_method" name="payment_method"> 
+            <datalist id="payment_methods">
+              <option value="Cash"></option>
+              <option value="Credit Card"></option>
+              <option value="Debit Card"></option>
+            </datalist>
           </span>
 
           <span>
@@ -178,22 +179,3 @@
     </div>
   </body>
 </html>
-
-<!--TODO
-10/19/2020: 
-  Display Page for all submitted data
-  Display Page with Editable Prices
-  Print ticket page and/or layout
-  Print receipt page and/or layout
-  Save data entered to a DB ( current plan is csv file)
-  Load data from File
-  Reload button on Submission page reload values previous entered in new form
-
-//TODO Done
-10/12/2020:
-  Form data displayed : Everything except Data select is displaying ( 10/13/2020)
-  If incorrect, go back to this form and re-load last inputs
-  Form submittal redirect //DONE 10/19/2020
-  Form data saved //DONE 10/19/2020
-
--->
