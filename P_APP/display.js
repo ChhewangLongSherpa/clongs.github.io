@@ -358,6 +358,13 @@ function saveData( ){
     return str.replace(/[^. a-zA-Z0-9]/g,'');
   }
 
+  //Check if Total has been changed from the previous form's data
+  let finalPay = document.getElementById("p_final").innerHTML;
+  
+  if( finalPay != displayData[3].p_final ){
+    displayData[3].p_final = finalPay;
+  }
+
   let transaction_info = {
     trans_id: displayData[0].form_id,
     trans_date: displayData[0].form_date,
@@ -381,6 +388,9 @@ function saveData( ){
   let servicesList_arrayheader =["Transaction_ID","Service_Date", "Customer_Name", "Customer_Phone","Customer_Email","Service", "Number"];
   let servicesList_container = [];
   let s_info = {};
+
+  //TODO Need to check if the service description was changed
+
   Object.keys(displayData[2]).map(function(key,i){
     s_info = {
       trans_id: displayData[0].form_id,
