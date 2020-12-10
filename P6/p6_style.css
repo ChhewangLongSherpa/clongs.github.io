@@ -2,19 +2,20 @@
 
 body{
   font-family: 'Raleway', sans-serif;
-  height: 100vh;
-  background-color: #fff;
+  background-color: #f1f1f1;
   color: #000;
-  overflow: hidden;
+}
+
+::-webkit-scrollbar{
+  width: 0px;
+  background: transparent;
 }
 
 .container{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  padding: 15px 3rem;
-  vertical-align: middle;
+  margin: 1rem;
+  padding-bottom: 2rem;
   outline: 5px dashed black;
   background-color: #fff;
   text-align: center;
@@ -39,11 +40,14 @@ h2{
   margin: 0;
 }
 /* Cursor */
+/*
 .txt-type > .txt {
   border-right: 0.2rem solid #777;
 }
+*/
 
 
+/*
 @media(max-width: 1200px){
   .container{
     padding: 0 1rem;
@@ -114,3 +118,4 @@ h2{
     padding-bottom: 2px;
   }
 }
+*/
