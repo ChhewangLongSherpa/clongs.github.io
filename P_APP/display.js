@@ -1,4 +1,4 @@
-const testCase1 = false;
+const testCase1 = true;
 const testCase2 = false;
 var debug = false;
 if( (testCase1 || testCase2) && !(testCase1 === testCase2) ){ debug = true;}
@@ -264,7 +264,8 @@ function tdEdit( table ){
     let editingTd;
 
     sourceTable.onclick = function(event){
-      let target = event.target.closest('.edit-cancel,.edit-ok,td');
+      let target = event.target.closest('.edit-cancel,.edit-ok,.td-editable');
+      //let target = event.target.closest('.edit-cancel,.edit-ok,td');
 
       if( !sourceTable.contains(target)) return;
 
