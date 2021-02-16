@@ -1,0 +1,88 @@
+
+body{
+  font-family: 'Raleway', sans-serif;
+  height: 100vh;
+  background: #fff;
+  color: #000;
+  overflow: hidden;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 0 3rem;
+  font-size: 3.5rem;
+}
+
+/* Cursor */
+@keyframes blink {
+  50% { border-right: 0.2rem solid #777;}
+}
+
+.txt-type > .txt{
+  animation: blink .6s infinite;
+  /*border-right: 0.2rem solid #777;*/
+}
+
+/*
+.txt {
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+*/
+
+@media(max-width: 800px){
+  .container{
+    padding: 0 1rem;
+  }
+}

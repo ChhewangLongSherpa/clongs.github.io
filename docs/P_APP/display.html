@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt Page</title>
+    <link rel="stylesheet" href="display.css">
+    <script src="display.js"></script>
+</head>
+<body>
+  <div id="content">
+    <div id="button-container" class="no-print">
+      <span>
+        <button id="saveButton" class="menuBtn no-print" onclick="saveData()">Save</button> 
+        <button id="printButton" class="menuBtn no-print" onclick="printReceipt()">Print</button>
+        <button id="resetButton" class="menuBtn no-print" onclick="resetForm()">Reset</button>
+      </span>
+    </div>
+   <header id="shopContactInfo">
+      Lake Oswego Mac Repair<br>
+      4 Monroe Parkway, Lake Oswego, OR 97035<br>
+      (503) 387-3586<br>
+      www.lakeoswegomacrepair.com
+   <!--
+     For template of receipt
+     Source: https://codepen.io/JewettCitySoftwareCorporation/pen/GLLBeG
+   -->  
+  </header>
+  <br>
+  <div class="container">
+    <div>
+      <span>Date: <span id="form_date"></span></span>
+      <span class="float_right">Transaction ID: <span id="form_id"></span> </span>
+    </div>
+    <div id="cust_info-container">
+      <ul class="cust_info">
+      <li class="cust_info">Customer Name: <span id="cust_name"></span></li>
+      <li class="cust_info">Customer Phone: <span id="cust_phone"></span> </li>
+      <li class="cust_info">Customer Email: <span id="cust_email"></span></li>
+      </ul>
+    </div>
+    <br>
+    <div id="line_items">
+    <table id="services_box" cellpadding="0" cellspacing="0">
+      <tbody id=services_container>
+        <tr class="heading">
+          <td>Service</td>
+          <td>Price</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <br>
+      <span class="page_break_id">
+      <p class="p_line_item page_break_id">Service Notes: <span class="float_right" id="serv_notes"></span></p>
+      </span>
+  <br>
+      <span>
+      <p class="p_line_item">Payment Method: <span class="float_right" id="p_method"></span></p>
+      </span>
+    <!--
+      <span>
+      <p>Payment Deposit: <span id="p_deposit"></span></p>
+      </span>
+      <span>
+      <p>Payment Balance: <span id="p_balance"></span></p>
+      </span>
+      --> 
+  <br>
+      <span>
+      <p class="p_line_item">Final Payment: <span class="float_right" id="p_final"></span></p>
+      </span>
+  <br>
+      <span>
+      <p class="p_line_item">Picked Up By: <span class="float_right" id="pickUp"></span></p>
+      </span>
+  <br>
+  </div>
+  <br>
+    <div>
+    <p id="return_policy">
+      ALL LAKE OSWEGO MAC REPAIRS COME WITH A 90 DAY WARRANTY COVERING ONLY THE PARTS THAT WERE REPLACED OR REPAIRED AFTER THE DATE OF PICKUP BY THE CUSTOMER. ANY PHYSICAL DAMAGE OR WATER CORRISON WILL NOT BE COVERED UNDER THE 90 DAY WARRANTY. LAKE OSWEGO MAC REPAIR IS ALSO NOT RESPONSIBLE FOR ANY DATA LOST DURING THE SERVICE, NOR WILL THERE BE REFUNDS, OR EXCHANGES AFTER THIS 90 DAY WARRANTY. 
+    </p>
+    <br>
+    <footer id="thankyou"> THANK YOU FOR YOUR BUSINESS!</footer>
+    </div>
+  </div>
+</body>
+</html>

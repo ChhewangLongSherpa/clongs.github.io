@@ -1,0 +1,199 @@
+:root{
+  /* root has a higher specificity than html*/
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif;
+  --main-bg-color: #f1f1f1;
+  --scrollbarBG: #CFD8DC;
+  --thumbBG: #90A4AE;
+  background-color: var(--main-bg-color);
+  /* Unused variable --main-min-height: 50px; */
+}
+
+*:focus {
+  outline: none;
+  background-color: #daeefe;
+}
+/*
+Source: https://css-tricks.com/the-current-state-of-styling-scrollbars/ , 10/27/2020
+*/
+body::-webkit-scrollbar {
+  width: 11px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+/*Parent For the entire form */
+#container{
+  top: 50%;
+  left: 50%;
+  border: 2px solid #000;
+  margin: 20px;
+}
+
+/*Intenior margin for form within #container parent */
+form{
+  margin-left: 10px;
+  margin-right:20px;
+  /*
+  For Debugging purposes
+  border: 2px solid green;
+  */
+}
+
+/*Span parent class for label and input fields*/
+.form-box span, #autogen-area {
+  display: inline-flex;
+  border: 2px solid lightblue;
+  width: 100%;
+  border-radius: 25px;
+  margin: 0.5rem;
+}
+
+#autogen-area {
+  border-radius: none;
+  border: none;
+  pointer-events: none;
+  /* For Debugging
+  border: 2px solid red;
+  */
+}
+
+#autogen-area input{
+  display: inline;
+  font-size: x-large;
+  font-weight: bold;
+  /*
+  For Debugging
+  border: 2px solid red;
+  */
+}
+
+#autogen-area .autogen{
+  border: none;
+  background: none;
+  pointer-events: none;
+}
+
+/* Div class specified to the input fields*/
+.form-box label, #autogen-area label{
+  display: inline-block;
+  text-align: left;
+  width: 180px;
+  padding: 3px;
+  padding-left: 5px;
+  font-weight: bold;
+  /*
+  //For Debugging purposes
+  border: 2px solid #000;
+  background-color: red;
+  */
+}
+
+#autogen-area label{
+  font-size: large;
+  width: auto;
+  padding: 0;
+  /* For Debugging
+  border: 2px solid red;
+  */
+}
+
+/* Div class specified to the input fields*/
+.form-box input {
+  width: 95%;
+  font-size: medium;
+  border: none;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  text-overflow: ellipsis;
+ /* 
+ //For Debugging purposes
+ border: 2px solid #000; */
+}
+
+/*
+Useful to add padding inside text area,
+especially on smaller window sizes 
+.form-box input[type=text]{
+  padding: 5px 15px;
+}
+*/
+
+.form-box select {
+  width: 100%;
+  margin: 0.30rem;
+  border: none;
+  background-color: var(--main-bg-color);
+  border-radius: 5px;
+}
+
+/* Hide scroll bar for the select element */
+.form-box select::-webkit-scrollbar {
+  width: 0px;
+}
+
+.form-box #services option {
+  font-size: large;
+}
+
+.form-box #display,
+.form-box #service_note{
+  width: 99%;
+  padding: 5px;
+  border:none;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  font-size: large;
+  resize: none;
+}
+
+.form-box label[for=display],
+.form-box label[for=service_note],
+.form-box label[for=services]{
+  text-align: center;
+}
+
+input[type=submit]{
+  /*
+  https://www.w3schools.com/howto/howto_css_form_icon.asp, 10/27/2020
+  */
+  background-color: #0f4c75;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9; 
+  margin: .25rem;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.icon {
+  background-color: lightblue;
+  padding: .25rem;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+}
+/* Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  display: none;
+}
+/* Source: https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
